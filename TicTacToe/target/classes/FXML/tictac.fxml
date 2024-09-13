@@ -2,12 +2,13 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pe.edu.upeu.tictactoe.control.TictacControl">
+<AnchorPane fx:id="btnOff" prefHeight="400.0" prefWidth="752.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pe.edu.upeu.tictactoe.control.TictacControl">
     <children>
-        <Pane layoutX="14.0" layoutY="14.0" prefHeight="200.0">
+        <Pane layoutX="14.0" layoutY="14.0" prefHeight="259.0" prefWidth="260.0">
             <children>
-                <GridPane layoutX="14.0" layoutY="14.0">
+                <GridPane layoutX="14.0" layoutY="14.0" prefHeight="230.0" prefWidth="230.0">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -19,23 +20,71 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <Button fx:id="btn00" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#accionButon" />
-                        <Button fx:id="btn01" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#accionButon" GridPane.columnIndex="1" />
-                        <Button fx:id="btn02" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#accionButon" GridPane.columnIndex="2" />
-                        <Button fx:id="btn10" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#accionButon" GridPane.rowIndex="1" />
-                        <Button fx:id="btn11" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#accionButon" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Button fx:id="btn12" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#accionButon" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                        <Button fx:id="btn20" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#accionButon" GridPane.rowIndex="2" />
-                        <Button fx:id="btn21" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#accionButon" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Button fx:id="btn22" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#accionButon" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <!-- Botones del tablero 3 en Raya -->
+                        <Button fx:id="btn00" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#accionButon" disable="true"/>
+                        <Button fx:id="btn01" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#accionButon" GridPane.columnIndex="1" disable="true"/>
+                        <Button fx:id="btn02" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#accionButon" GridPane.columnIndex="2" disable="true"/>
+                        <Button fx:id="btn10" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#accionButon" GridPane.rowIndex="1" disable="true"/>
+                        <Button fx:id="btn11" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#accionButon" GridPane.columnIndex="1" GridPane.rowIndex="1" disable="true"/>
+                        <Button fx:id="btn12" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#accionButon" GridPane.columnIndex="2" GridPane.rowIndex="1" disable="true"/>
+                        <Button fx:id="btn20" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#accionButon" GridPane.rowIndex="2" disable="true"/>
+                        <Button fx:id="btn21" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#accionButon" GridPane.columnIndex="1" GridPane.rowIndex="2" disable="true"/>
+                        <Button fx:id="btn22" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#accionButon" prefHeight="82.0" prefWidth="54.0" GridPane.columnIndex="2" GridPane.rowIndex="2" disable="true"/>
                     </children>
                 </GridPane>
             </children>
         </Pane>
-        <Pane layoutX="328.0" prefHeight="200.0" prefWidth="200.0">
+        <Pane layoutX="284.0" prefHeight="153.0" prefWidth="453.0">
             <children>
-                <Button layoutX="34.0" layoutY="100.0" mnemonicParsing="false" onAction="#imprimir" text="Iniciar" />
-                <Button layoutX="118.0" layoutY="100.0" mnemonicParsing="false" text="Anular" />
-            </children></Pane>
+                <TextField fx:id="jugador1" layoutX="98.0" layoutY="37.0" prefHeight="25.0" prefWidth="169.0" />
+                <TextField fx:id="jugador2" layoutX="98.0" layoutY="75.0" prefHeight="25.0" prefWidth="169.0" />
+                <Label layoutX="14.0" layoutY="41.0" prefHeight="17.0" prefWidth="67.0" text="Jugador 1">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Label layoutX="14.0" layoutY="78.0" prefHeight="17.0" prefWidth="67.0" text="Jugador 2">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Label layoutX="65.0" layoutY="119.0" prefHeight="17.0" prefWidth="67.0" text="Turno: ">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Label fx:id="elTurno" layoutX="129.0" layoutY="119.0" prefHeight="20.0" prefWidth="121.0">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+            </children>
+        </Pane>
+        <!-- Botón Iniciar -->
+        <Button fx:id="btnOn" layoutX="60.0" layoutY="289.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="67.0" text="Iniciar" onAction="#iniciarJuego">
+            <font>
+                <Font name="System Bold Italic" size="12.0" />
+            </font>
+        </Button>
+        <!-- Botón Anular -->
+        <Button layoutX="165.0" layoutY="289.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="67.0" text="Anular" onAction="#anularJuego">
+            <font>
+                <Font name="System Bold Italic" size="12.0" />
+            </font>
+        </Button>
+        <Pane layoutX="284.0" layoutY="144.0" prefHeight="248.0" prefWidth="468.0">
+            <children>
+                <TableView fx:id="tablaPuntajes" layoutX="6.0" layoutY="9.0" prefHeight="230.0" prefWidth="453.0">
+                    <columns>
+                        <TableColumn fx:id="columnaPartida" prefWidth="75.0" text="Partida" />
+                        <TableColumn fx:id="columnaJugador1" prefWidth="75.0" text="Jugador 1" />
+                        <TableColumn fx:id="columnaJugador2" prefWidth="75.0" text="Jugador 2" />
+                        <TableColumn fx:id="columnaGanador" prefWidth="75.0" text="Ganador" />
+                        <TableColumn fx:id="columnaPuntuacion" prefWidth="75.0" text="Puntuación" />
+                        <TableColumn fx:id="columnaEstado" prefWidth="75.0" text="Estado" />
+                    </columns>
+                </TableView>
+            </children>
+        </Pane>
     </children>
 </AnchorPane>
