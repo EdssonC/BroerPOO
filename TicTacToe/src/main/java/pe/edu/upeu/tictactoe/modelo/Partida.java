@@ -9,7 +9,6 @@ public class Partida {
     private int puntuacion;
     private String estado;
 
-    // Constructor
     public Partida(int numero, String jugador1, String jugador2, String ganador, int puntuacion, String estado) {
         this.numero = numero;
         this.jugador1 = jugador1;
@@ -19,7 +18,6 @@ public class Partida {
         this.estado = estado;
     }
 
-    // Getters y setters
     public int getNumero() {
         return numero;
     }
