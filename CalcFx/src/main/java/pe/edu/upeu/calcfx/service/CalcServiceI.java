@@ -8,6 +8,6 @@ public interface CalcServiceI {
 
     public List<CalcTO> obtenerResultados();
     public void guardarResultados(CalcTO to);
-    public void actualizarResultados(CalcTO to, int index);
-    public void eliminarResultados(int index);
+    public void actualizarResultados(CalcTO to, long index);
+    public void eliminarResultados(long index);
 }

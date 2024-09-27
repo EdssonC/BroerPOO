@@ -135,12 +135,13 @@ public class CalcControl {
 
         }
         CalcTO to=new CalcTO();
+        to.setId(Long.parseLong(String.valueOf(indexEdit)));
         to.setNum1(String.valueOf(val1));
         to.setNum2(String.valueOf(val2));
         to.setOperador(valores[1].charAt(0));
         to.setResultado(String.valueOf(txtResultado.getText()));
         if(indexEdit!=-1){
-            serviceI.actualizarResultados(to, indexEdit);
+            serviceI.actualizarResultados(to, to.getId());
         }else{
             serviceI.guardarResultados(to);
         }
@@ -153,13 +154,13 @@ public class CalcControl {
     }
 
 
-    private void editOperCalc(CalcTO cal, int index) {
+    private void editOperCalc(CalcTO cal, Long index) {
         System.out.println("Editing: " + cal.getNum1() + " Index:"+index);
         txtResultado.setText(cal.getNum1()+" "+cal.getOperador()+" "+cal.getNum2());
-                indexEdit=index;
+                indexEdit=index.intValue();
     }
 
-    private void deleteOperCalc(CalcTO cal,int index) {
+    private void deleteOperCalc(CalcTO cal,Long index) {
         System.out.println("Deleting: " + cal.getNum2());
         serviceI.eliminarResultados(index);
         listaOper();
@@ -188,13 +189,13 @@ public class CalcControl {
                 editButton.getStyleClass().setAll("btn", "btn-success");
                 editButton.setOnAction(event -> {
                     CalcTO cal = getTableView().getItems().get(getIndex());
-                    editOperCalc(cal, getIndex());
+                    editOperCalc(cal, cal.getId());
                 });
 
                 deleteButton.getStyleClass().setAll("btn", "btn-danger");
                 deleteButton.setOnAction(event -> {
                     CalcTO cal = getTableView().getItems().get(getIndex());
-                    deleteOperCalc(cal,getIndex());
+                    deleteOperCalc(cal,cal.getId());
                 });
             }
 
