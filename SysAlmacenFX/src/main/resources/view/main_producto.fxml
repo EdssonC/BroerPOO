@@ -52,27 +52,27 @@
                                  </font></Label>
                               <Label maxWidth="1.7976931348623157E308" text="Nombre Producto" GridPane.rowIndex="1">
                                  <GridPane.margin>
-                                    <Insets left="10.0" />
+                                    <Insets />
                                  </GridPane.margin>
                               </Label>
                               <Label maxWidth="1.7976931348623157E308" text="P. Unit." GridPane.rowIndex="2">
-                                 <padding>
-                                    <Insets left="10.0" />
-                                 </padding>
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin>
                               </Label>
                               <Label maxWidth="1.7976931348623157E308" text="Utilidad" GridPane.rowIndex="3">
                                  <GridPane.margin>
-                                    <Insets left="10.0" />
+                                    <Insets />
                                  </GridPane.margin>
                               </Label>
                               <Label maxWidth="1.7976931348623157E308" text="Stock" GridPane.rowIndex="4">
                                  <GridPane.margin>
-                                    <Insets left="10.0" />
+                                    <Insets />
                                  </GridPane.margin>
                               </Label>
                               <Label maxWidth="1.7976931348623157E308" text="Marca" GridPane.rowIndex="5">
                                  <GridPane.margin>
-                                    <Insets left="10.0" />
+                                    <Insets />
                                  </GridPane.margin>
                               </Label>
                               <TextField GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1">
@@ -121,12 +121,12 @@
                                  </GridPane.margin></ComboBox>
                               <Label layoutX="20.0" layoutY="167.0" maxWidth="1.7976931348623157E308" text="Categoría" GridPane.rowIndex="6">
                                  <GridPane.margin>
-                                    <Insets left="10.0" />
+                                    <Insets />
                                  </GridPane.margin>
                               </Label>
                               <Label layoutX="10.0" layoutY="197.0" maxWidth="1.7976931348623157E308" text="Unidad de Medida" GridPane.rowIndex="7">
                                  <GridPane.margin>
-                                    <Insets left="10.0" />
+                                    <Insets />
                                  </GridPane.margin>
                               </Label>
                               <ComboBox layoutX="115.0" layoutY="163.0" prefHeight="25.0" prefWidth="297.0" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="6">

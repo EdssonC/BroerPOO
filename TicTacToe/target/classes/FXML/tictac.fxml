@@ -20,7 +20,6 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <!-- Botones del tablero 3 en Raya -->
                         <Button fx:id="btn00" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#accionButon" />
                         <Button fx:id="btn01" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#accionButon" GridPane.columnIndex="1" />
                         <Button fx:id="btn02" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#accionButon" GridPane.columnIndex="2" />
@@ -75,13 +74,11 @@
             </Label>
             </children>
         </Pane>
-        <!-- Botón Iniciar -->
         <Button fx:id="btnOn" layoutX="60.0" layoutY="289.0" mnemonicParsing="false" onAction="#iniciarJuego" prefHeight="56.0" prefWidth="67.0" text="Iniciar">
             <font>
                 <Font name="System Bold Italic" size="12.0" />
             </font>
         </Button>
-        <!-- Botón Anular -->
         <Button fx:id="btnAnular" layoutX="165.0" layoutY="289.0" mnemonicParsing="false" onAction="#anularJuego" prefHeight="56.0" prefWidth="67.0" text="Anular">
             <font>
                 <Font name="System Bold Italic" size="12.0" />
