@@ -5,11 +5,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="540.0" prefWidth="703.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pe.edu.upeu.sysalmacenfx.control.ProductoController">
+<AnchorPane fx:id="miContenedor" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pe.edu.upeu.sysalmacenfx.control.ProductoController">
    <children>
       <VBox layoutX="14.0" layoutY="14.0" prefHeight="530.0" prefWidth="682.0">
          <children>
-            <AnchorPane prefWidth="200.0">
+            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                <children>
                   <Label layoutX="14.0" layoutY="14.0" text="Gestionar producto">
                      <font>
@@ -17,13 +17,13 @@
                      </font>
                   </Label>
                   <Label layoutX="290.0" layoutY="33.0" text="Filtrar registro" />
-                  <TextField layoutX="290.0" layoutY="58.0" prefHeight="25.0" prefWidth="165.0" />
-                  <Button layoutX="474.0" layoutY="58.0" mnemonicParsing="false" text="Button" />
+                  <TextField fx:id="txtFiltroDato" layoutX="290.0" layoutY="58.0" prefHeight="25.0" prefWidth="257.0" />
+                  <Button layoutX="560.0" layoutY="58.0" mnemonicParsing="false" text="Button" />
                </children>
             </AnchorPane>
-            <HBox prefHeight="170.0" prefWidth="579.0">
+            <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                <children>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                  <AnchorPane>
                      <children>
                         <GridPane AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
                           <columnConstraints>
@@ -75,12 +75,12 @@
                                     <Insets />
                                  </GridPane.margin>
                               </Label>
-                              <TextField GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1">
+                              <TextField fx:id="txtNombreProducto" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1">
                                  <GridPane.margin>
                                     <Insets left="5.0" right="5.0" />
                                  </GridPane.margin>
                               </TextField>
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="2">
+                              <TextField fx:id="txtPUnit" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <GridPane.margin>
                                     <Insets left="5.0" />
                                  </GridPane.margin>
@@ -90,12 +90,12 @@
                                     <Insets left="15.0" />
                                  </GridPane.margin>
                               </Label>
-                              <TextField GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="3">
+                              <TextField fx:id="txtUtilidad" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="3">
                                  <GridPane.margin>
                                     <Insets left="5.0" right="5.0" />
                                  </GridPane.margin>
                               </TextField>
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="4">
+                              <TextField fx:id="txtStock" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                  <GridPane.margin>
                                     <Insets left="5.0" />
                                  </GridPane.margin>
@@ -105,17 +105,17 @@
                                     <Insets left="15.0" />
                                  </GridPane.margin>
                               </Label>
-                              <TextField GridPane.columnIndex="3" GridPane.rowIndex="2">
+                              <TextField fx:id="txtPUnitOld" GridPane.columnIndex="3" GridPane.rowIndex="2">
                                  <GridPane.margin>
                                     <Insets right="5.0" />
                                  </GridPane.margin>
                               </TextField>
-                              <TextField GridPane.columnIndex="3" GridPane.rowIndex="4">
+                              <TextField fx:id="txtStockOld" GridPane.columnIndex="3" GridPane.rowIndex="4">
                                  <GridPane.margin>
                                     <Insets right="5.0" />
                                  </GridPane.margin>
                               </TextField>
-                              <ComboBox prefHeight="25.0" prefWidth="297.0" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="5">
+                              <ComboBox fx:id="cbxMarca" prefHeight="25.0" prefWidth="297.0" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="5">
                                  <GridPane.margin>
                                     <Insets left="5.0" right="5.0" />
                                  </GridPane.margin></ComboBox>
@@ -129,11 +129,11 @@
                                     <Insets />
                                  </GridPane.margin>
                               </Label>
-                              <ComboBox layoutX="115.0" layoutY="163.0" prefHeight="25.0" prefWidth="297.0" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="6">
+                              <ComboBox fx:id="cbxCategoria" layoutX="115.0" layoutY="163.0" prefHeight="25.0" prefWidth="297.0" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="6">
                                  <GridPane.margin>
                                     <Insets left="5.0" right="5.0" />
                                  </GridPane.margin></ComboBox>
-                              <ComboBox layoutX="115.0" layoutY="193.0" prefHeight="25.0" prefWidth="297.0" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="7">
+                              <ComboBox fx:id="cbxUnidMedida" layoutX="115.0" layoutY="193.0" prefHeight="25.0" prefWidth="297.0" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="7">
                                  <GridPane.margin>
                                     <Insets left="5.0" right="5.0" />
                                  </GridPane.margin>
@@ -148,11 +148,21 @@
                                     <Insets left="5.0" right="5.0" />
                                  </GridPane.margin>
                               </Button>
+                              <Label fx:id="lbnMsg" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="70.0" prefWidth="400.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="9" GridPane.rowSpan="2147483647" />
                            </children>
                         </GridPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+                  <AnchorPane maxWidth="1.7976931348623157E308" />
+                  <TableView fx:id="tableView" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="270.0">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="C1" />
+                      <TableColumn prefWidth="75.0" text="C2" />
+                    </columns>
+                     <HBox.margin>
+                        <Insets left="5.0" right="10.0" top="20.0" />
+                     </HBox.margin>
+                  </TableView>
                </children>
             </HBox>
          </children>
