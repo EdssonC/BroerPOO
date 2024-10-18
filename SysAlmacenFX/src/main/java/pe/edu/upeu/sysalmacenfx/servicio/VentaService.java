@@ -1,13 +1,14 @@
 package pe.edu.upeu.sysalmacenfx.servicio;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import pe.edu.upeu.sysalmacenfx.modelo.Producto;
 import pe.edu.upeu.sysalmacenfx.modelo.Venta;
 import pe.edu.upeu.sysalmacenfx.repositorio.ProductoRepository;
 import pe.edu.upeu.sysalmacenfx.repositorio.VentaRepository;
 
 import java.util.List;
-
+@Service
 public class VentaService {
     @Autowired
     VentaRepository repo;

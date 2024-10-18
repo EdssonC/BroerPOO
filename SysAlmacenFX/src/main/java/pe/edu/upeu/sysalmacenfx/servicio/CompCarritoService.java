@@ -1,12 +1,13 @@
 package pe.edu.upeu.sysalmacenfx.servicio;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import pe.edu.upeu.sysalmacenfx.modelo.CompCarrito;
 
 import pe.edu.upeu.sysalmacenfx.repositorio.CompCarritoRepository;
 
 import java.util.List;
-
+@Service
 public class CompCarritoService {
     @Autowired
     CompCarritoRepository repo;

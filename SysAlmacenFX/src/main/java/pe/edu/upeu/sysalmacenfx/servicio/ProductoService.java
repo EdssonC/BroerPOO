@@ -1,17 +1,15 @@
 package pe.edu.upeu.sysalmacenfx.servicio;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import pe.edu.upeu.sysalmacenfx.modelo.Producto;
-import pe.edu.upeu.sysalmacenfx.modelo.UnidadMedida;
 import pe.edu.upeu.sysalmacenfx.repositorio.ProductoRepository;
-import pe.edu.upeu.sysalmacenfx.repositorio.UnidadMedidaRepository;
 
 import java.util.List;
-
+@Service
 public class ProductoService {
     @Autowired
     ProductoRepository repo;
-
 
     public Producto saveProducto(Producto to) {
         return repo.save(to);
@@ -43,6 +41,6 @@ public class ProductoService {
         repo.deleteById(id);
     }
     public Producto searchByIdProducto(Long id){
-        return repo.findById(id).get();
+        return repo.findById(id).orElse(null);
     }
 }
