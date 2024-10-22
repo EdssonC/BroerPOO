@@ -1,6 +1,8 @@
 package pe.edu.upeu.sysalmacenfx.control;
 
+import jakarta.validation.Validation;
 import jakarta.validation.Validator;
+import jakarta.validation.ValidatorFactory;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
@@ -108,6 +110,10 @@ public class ProductoController {
             }
         });
         new ComboBoxAutoComplete<>(cbxUnidMedida);
+
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        validator = factory.getValidator();
+
 
         // Crear instancia de la clase genérica TableViewHelper
         TableViewHelper<Producto> tableViewHelper = new TableViewHelper<>();

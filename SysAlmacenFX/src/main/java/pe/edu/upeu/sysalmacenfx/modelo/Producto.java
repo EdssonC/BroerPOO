@@ -1,6 +1,9 @@
 package pe.edu.upeu.sysalmacenfx.modelo;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,8 +20,13 @@ public class Producto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_producto")
     private Long idProducto;
+
+    @NotNull(message = "El nombre no puede estar vacío")
+    @Size(min = 2, max = 120, message = "El nombre debe tener entre 2 y 120 caracteres")
     @Column(name = "nombre", nullable = false, length = 120)
     private String nombre;
+
+    @Positive(message = "El Precio Unitario debe ser positivo")
     @Column(name = "pu", nullable = false)
     private Double pu;
     @Column(name = "puold", nullable = false)
