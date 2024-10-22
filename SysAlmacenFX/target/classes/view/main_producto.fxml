@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="miContenedor" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pe.edu.upeu.sysalmacenfx.control.ProductoController">
+<AnchorPane fx:id="miContenedor" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pe.edu.upeu.sysalmacenfx.control.ProductoController">
    <children>
       <VBox layoutX="14.0" layoutY="14.0">
          <children>
@@ -138,12 +138,12 @@
                                     <Insets left="5.0" right="5.0" />
                                  </GridPane.margin>
                               </ComboBox>
-                              <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="103.0" text="Guardar" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                              <Button mnemonicParsing="false" onAction="#validarFormulario" prefHeight="25.0" prefWidth="103.0" text="Guardar" GridPane.columnIndex="1" GridPane.rowIndex="8">
                                  <GridPane.margin>
                                     <Insets left="5.0" right="5.0" />
                                  </GridPane.margin>
                               </Button>
-                              <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="94.0" text="Cancelar" GridPane.columnIndex="2" GridPane.rowIndex="8">
+                              <Button mnemonicParsing="false" onAction="#cancelarAccion" prefHeight="25.0" prefWidth="94.0" text="Cancelar" GridPane.columnIndex="2" GridPane.rowIndex="8">
                                  <GridPane.margin>
                                     <Insets left="5.0" right="5.0" />
                                  </GridPane.margin>
