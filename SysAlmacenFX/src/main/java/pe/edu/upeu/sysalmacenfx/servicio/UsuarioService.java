@@ -43,7 +43,13 @@ public class UsuarioService {
     public void deleteUsuario(Long id) {
         repo.deleteById(id);
     }
+
     public Usuario searchByIdUsuario(Long id){
         return repo.findById(id).get();
     }
+
+    public Usuario loginUsuario(String user, String clave) {
+        return repo.loginUsuario(user, clave);
+    }
+
 }
