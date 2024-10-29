@@ -15,6 +15,7 @@ public class MenuMenuItemDao implements MenuMenuItenDaoI {
     public List<MenuMenuItenTO> listaAccesos(String perfil, Properties idioma) {
         List<MenuMenuItenTO> lista = new ArrayList<>();
         lista.add(new MenuMenuItenTO(idioma.getProperty("menu.nombre.archivo"), "", "mifile"));
+        lista.add(new MenuMenuItenTO(idioma.getProperty("menu.nombre.archivo"), "Salir", "misalir"));
         lista.add(new MenuMenuItenTO("Edit", "Cortar", "micut"));
         lista.add(new MenuMenuItenTO("Edit", "Copiar", "micopy"));
         lista.add(new MenuMenuItenTO("Edit", "Pegar", "mipaste"));

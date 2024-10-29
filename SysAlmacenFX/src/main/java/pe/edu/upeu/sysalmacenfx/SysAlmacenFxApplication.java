@@ -17,7 +17,7 @@ import pe.edu.upeu.sysalmacenfx.pruebas.MainX2;
 
 @SpringBootApplication
 public class SysAlmacenFxApplication extends Application {
-	private static ConfigurableApplicationContext configurableApplicationContext;
+	public static ConfigurableApplicationContext configurableApplicationContext;
 	private Parent parent;
 
 	public static void main(String[] args) {
