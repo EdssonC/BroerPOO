@@ -6,42 +6,38 @@ import pe.edu.upeu.sysalmacenfx.modelo.Emisor;
 import pe.edu.upeu.sysalmacenfx.repositorio.EmisorRepository;
 
 import java.util.List;
+
 @Service
 public class EmisorService {
     @Autowired
     EmisorRepository repo;
 
-
-    public Emisor saveEmisor(Emisor to) {
+    public Emisor save(Emisor to) {
         return repo.save(to);
     }
 
-    public List<Emisor> listEmisor() {
+    public List<Emisor> list() {
         return repo.findAll();
     }
 
-    public Emisor updateEmisor(Emisor to, Long id) {
+    public Emisor update(Emisor to, Long id) {
         try {
-            Emisor toe = repo.findById(id).get();
+            Emisor toe = repo.findById(id).orElse(null);
             if (toe != null) {
-                toe.setNombreComercial(to.getNombreComercial());
+                toe.setRuc(to.getRuc());
+                return repo.save(toe);
             }
-            return repo.save(toe);
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
         return null;
-
     }
 
-    public Emisor updateEmisor(Emisor to) {
-        return repo.save(to);
-    }
-
-    public void deleteEmisor(Long id) {
+    public void delete(Long id) {
         repo.deleteById(id);
     }
-    public Emisor searchByIdEmisor(Long id){
-        return repo.findById(id).get();
+
+    public Emisor searchById(Long id) {
+        return repo.findById(id).orElse(null);
     }
 }

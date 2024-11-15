@@ -40,6 +40,7 @@ public class Compra {
     private String serie;
     @Column(name = "num_doc", nullable = false, length = 20)
     private String numDoc;
+
     @JsonFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
     @Column(name = "fecha_comp", nullable = false)
@@ -49,6 +50,7 @@ public class Compra {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(name = "fecha_reg", nullable = false)
     private LocalDateTime fechaReg;
+
     @OneToMany(mappedBy = "compra", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CompraDetalle> compraDetalles;
 }

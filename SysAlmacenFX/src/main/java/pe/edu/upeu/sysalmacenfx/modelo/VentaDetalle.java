@@ -38,4 +38,3 @@ public class VentaDetalle {
             "FK_PRODUCTO_VENTADETALLE"))
     private Producto producto;
 }
-

@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.edu.upeu.sysalmacenfx.dto.ComboBoxOption;
 import pe.edu.upeu.sysalmacenfx.modelo.Categoria;
-
 import pe.edu.upeu.sysalmacenfx.repositorio.CategoriaRepository;
 
 import java.util.ArrayList;
@@ -16,17 +15,18 @@ public class CategoriaService {
     @Autowired
     CategoriaRepository repo;
 
-
+    //C
     public Categoria save(Categoria to){
-        return repo.save(to);
+    return repo.save(to);
     }
 
+    //R
     public List<Categoria> list(){
         return repo.findAll();
     }
-
+    //U
     public Categoria update(Categoria to, Long id){
-        try{
+        try {
             Categoria toe=repo.findById(id).get();
             if(toe!=null){
                 toe.setNombre(to.getNombre());
@@ -36,26 +36,30 @@ public class CategoriaService {
             System.out.println("Error: "+ e.getMessage());
         }
         return null;
-
     }
-     public Categoria update(Categoria to){
-        return repo.save(to);
-     }
 
-     public void delete(Long id){
+    public Categoria update(Categoria to){
+        return repo.save(to);
+    }
+
+    //D
+    public void delete(Long id){
         repo.deleteById(id);
-     }
+    }
+    //B
     public Categoria searchById(Long id){
         return repo.findById(id).orElse(null);
     }
 
 
-    public List<ComboBoxOption> listaCategoriaCombobox(){
-        List<ComboBoxOption> listar =new ArrayList<>();
-        for (Categoria cate : repo.findAll()) {
-            listar.add(new ComboBoxOption(String.valueOf(cate.getIdCategoria()),
-                    cate.getNombre()
-            ));
+    public List<ComboBoxOption> listarCombobox(){
+        List<ComboBoxOption> listar=new ArrayList<>();
+        ComboBoxOption cb;
+        for(Categoria cate : repo.findAll()) {
+            cb=new ComboBoxOption();
+            cb.setKey(String.valueOf(cate.getIdCategoria()));
+            cb.setValue(cate.getNombre());
+            listar.add(cb);
         }
         return listar;
     }

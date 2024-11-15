@@ -4,12 +4,16 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import net.sf.jasperreports.engine.JasperPrint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pe.edu.upeu.sysalmacenfx.componente.AutoCompleteTextField;
 import pe.edu.upeu.sysalmacenfx.dto.ModeloDataAutocomplet;
 import pe.edu.upeu.sysalmacenfx.servicio.ProductoService;
+import pe.edu.upeu.sysalmacenfx.servicio.VentaService;
+import win.zqxu.jrviewer.JRViewerFX;
 
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -22,6 +26,12 @@ public class ProdAutoCompControl {
 
     @FXML
     TextField txtBuscarProd, txtPrecio, txtStock;
+
+    @Autowired
+    VentaService daoV;
+    private JasperPrint jasperPrint;
+    @FXML
+    BorderPane miReport;
 
     AutoCompleteTextField actf;
     private final SortedSet<ModeloDataAutocomplet> entries = new TreeSet<>((ModeloDataAutocomplet o1, ModeloDataAutocomplet o2) ->
@@ -55,6 +65,17 @@ public class ProdAutoCompControl {
     }
     public void listarProducto(){
         entries.addAll(ps.listAutoCompletProducto());
+    }
+
+    @FXML
+    public void mostrarReporte(){
+        try {
+            jasperPrint= daoV.runReport2();
+            JRViewerFX viewerFX = new JRViewerFX(jasperPrint);
+            miReport.setCenter(viewerFX);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
 

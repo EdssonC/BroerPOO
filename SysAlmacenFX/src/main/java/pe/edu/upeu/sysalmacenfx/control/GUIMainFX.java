@@ -1,5 +1,6 @@
 package pe.edu.upeu.sysalmacenfx.control;
 
+
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,7 +13,6 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Component;
 import pe.edu.upeu.sysalmacenfx.dto.MenuMenuItenTO;
 import pe.edu.upeu.sysalmacenfx.dto.SessionManager;
@@ -25,11 +25,9 @@ import java.util.List;
 import java.util.Properties;
 import java.util.prefs.Preferences;
 
-import static pe.edu.upeu.sysalmacenfx.SysAlmacenFxApplication.configurableApplicationContext;
-
-
 @Component
 public class GUIMainFX {
+
     @Autowired
     private ApplicationContext context;
     Preferences userPrefs = Preferences.userRoot();
@@ -45,7 +43,6 @@ public class GUIMainFX {
     private MenuBar menuBarFx;
 
     private Parent parent;
-
     Stage stage;
 
     @FXML
@@ -54,9 +51,10 @@ public class GUIMainFX {
             stage = (Stage) tabPaneFx.getScene().getWindow();
             System.out.println("El título del stage es: " + stage.getTitle());
         });
-        myresources = util.detectLanguage(userPrefs.get("IDIOMAX", "es"));
+
+        myresources = util.detectLanguage(userPrefs.get("IDIOMAX", "en"));
         mmiDao = new MenuMenuItemDao();
-        String perf =SessionManager.getInstance().getNombrePerfil();
+        String perf= SessionManager.getInstance().getNombrePerfil();
         lista = mmiDao.listaAccesos(perf, myresources);
         int[] mmi = contarMenuMunuItem(lista);
         Menu[] menu = new Menu[mmi[0]];
@@ -94,10 +92,12 @@ public class GUIMainFX {
                 menuitem++;
             }
         }
-        // Layout principal
+// Layout principal
         bp.setTop(menuBarFx);
         bp.setCenter(tabPaneFx);
     }
+
+
     public int[] contarMenuMunuItem(List<MenuMenuItenTO> data) {
         int menui = 0, menuitem = 0;
         String menuN = "";
@@ -116,6 +116,7 @@ public class GUIMainFX {
 
     class MenuItemListener {
         public void handle(javafx.event.ActionEvent e) {
+
             if (((MenuItem) e.getSource()).getId().equals("mimiregproduct")) {
                 tabPaneFx.getTabs().clear();
                 FXMLLoader loader = new
@@ -132,6 +133,7 @@ public class GUIMainFX {
                     throw new RuntimeException(ex);
                 }
             }
+
             if(((MenuItem) e.getSource()).getId().equals("mimiautcomp")){
                 tabPaneFx.getTabs().clear();
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/main_prod_autocomp.fxml"));
@@ -141,7 +143,7 @@ public class GUIMainFX {
                     paneFromFXML = loader.load(); // Cargar el contenido FXML
                     ScrollPane dd= new ScrollPane(paneFromFXML);
                     //mc.setContexto(ctx);
-                    Tab clienteTab = new Tab("Auto Complete",dd );
+                    Tab clienteTab = new Tab("Form Autocomplete",dd );
                     tabPaneFx.getTabs().add(clienteTab);
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
@@ -157,7 +159,7 @@ public class GUIMainFX {
                     paneFromFXML = loader.load(); // Cargar el contenido FXML
                     ScrollPane dd= new ScrollPane(paneFromFXML);
                     //mc.setContexto(ctx);
-                    Tab clienteTab = new Tab("Venta",dd );
+                    Tab clienteTab = new Tab("Registro Venta",dd );
                     tabPaneFx.getTabs().add(clienteTab);
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
@@ -165,30 +167,34 @@ public class GUIMainFX {
             }
 
 
-
             if (((MenuItem) e.getSource()).getId().equals("mimisalir")) {
 
                 tabPaneFx.getTabs().clear();
 
-                try {
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/login.fxml"));
-                    fxmlLoader.setControllerFactory(context::getBean);
-                    parent= fxmlLoader.load();
-                    Scene scene = new Scene(parent);
-                    stage.sizeToScene();
-                    stage.setScene(scene);
-                    stage.centerOnScreen();
-                    stage.setTitle("SysAlmacen Spring Java-FX");
-                    stage.setResizable(false);
-                    stage.show();
+               try {
+                   FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/login.fxml"));
+                   fxmlLoader.setControllerFactory(context::getBean);
+                   parent= fxmlLoader.load();
+                   Scene scene = new Scene(parent); //Punto (1) Diana
+                   stage.sizeToScene();
+                   stage.setScene(scene);
+                   stage.centerOnScreen(); // Punto (1) Mary
+                   stage.setTitle("SysAlmacen Spring Java-FX");
+                   stage.setResizable(false); //Miael (0.8)
+                   stage.show();
 
 
-                }catch (Exception ex){
-                    throw new RuntimeException(ex);
-                }
+               }catch (Exception ex){
+                   throw new RuntimeException(ex);
+               }
+
             }
 
 
+            if (((MenuItem) e.getSource()).getId().equals("mimiselectall")) {
+                tabPaneFx.getTabs().clear();
+                // Añade la lógica para "mimiselectall"
+            }
         }
     }
     class SampleMenuListener {
@@ -198,5 +204,6 @@ public class GUIMainFX {
             }
         }
     }
+
 
 }

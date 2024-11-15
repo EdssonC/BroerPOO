@@ -40,6 +40,8 @@ public class LoginController {
     @FXML
     Button btnIngresar;
 
+
+
     @FXML
     public void login(ActionEvent event) throws IOException {
         try {
@@ -78,7 +80,9 @@ public class LoginController {
             }
         }catch (Exception e){
             System.out.println(e.getMessage());
-        }
-    }
+        } }
+
+
+
 
 }

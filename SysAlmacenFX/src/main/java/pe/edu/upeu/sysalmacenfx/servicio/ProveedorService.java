@@ -2,48 +2,42 @@ package pe.edu.upeu.sysalmacenfx.servicio;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pe.edu.upeu.sysalmacenfx.modelo.Producto;
 import pe.edu.upeu.sysalmacenfx.modelo.Proveedor;
-import pe.edu.upeu.sysalmacenfx.repositorio.ProductoRepository;
 import pe.edu.upeu.sysalmacenfx.repositorio.ProveedorRepository;
 
 import java.util.List;
+
 @Service
 public class ProveedorService {
     @Autowired
     ProveedorRepository repo;
 
-
-    public Proveedor saveProveedor(Proveedor to) {
+    public Proveedor save(Proveedor to) {
         return repo.save(to);
     }
 
-    public List<Proveedor> listProveedor() {
+    public List<Proveedor> list() {
         return repo.findAll();
     }
 
-    public Proveedor updateProveedor(Proveedor to, Long id) {
+    public Proveedor update(Proveedor to, Long id) {
         try {
-            Proveedor toe = repo.findById(id).get();
+            Proveedor toe = repo.findById(id).orElse(null);
             if (toe != null) {
-                toe.setNombresRaso(to.getNombresRaso());
+                toe.setDniRuc(to.getDniRuc());
+                return repo.save(toe);
             }
-            return repo.save(toe);
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
         return null;
-
     }
 
-    public Proveedor updateProveedor(Proveedor to) {
-        return repo.save(to);
-    }
-
-    public void deleteProveedor(Long id) {
+    public void delete(Long id) {
         repo.deleteById(id);
     }
-    public Proveedor searchByIdProveedor(Long id){
-        return repo.findById(id).get();
+
+    public Proveedor searchById(Long id) {
+        return repo.findById(id).orElse(null);
     }
 }

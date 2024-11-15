@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import pe.edu.upeu.sysalmacenfx.dto.ComboBoxOption;
 import pe.edu.upeu.sysalmacenfx.modelo.Categoria;
 import pe.edu.upeu.sysalmacenfx.modelo.Marca;
-import pe.edu.upeu.sysalmacenfx.repositorio.CategoriaRepository;
 import pe.edu.upeu.sysalmacenfx.repositorio.MarcaRepository;
 
 import java.util.ArrayList;
@@ -16,46 +15,43 @@ public class MarcaService {
 
     @Autowired
     MarcaRepository repo;
-
-
-    public Marca saveMarca(Marca to) {
+    public Marca save(Marca to){
         return repo.save(to);
     }
-
-    public List<Marca> listMarca() {
+    public List<Marca> list(){
         return repo.findAll();
     }
-
-    public Marca updateMarca(Marca to, Long id) {
+    public Marca update(Marca to, Long id){
         try {
-            Marca toe = repo.findById(id).get();
-            if (toe != null) {
+            Marca toe=repo.findById(id).get();
+            if(toe!=null){
                 toe.setNombre(to.getNombre());
             }
             return repo.save(toe);
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+        }catch (Exception e){
+            System.out.println("Error: "+ e.getMessage());
         }
         return null;
-
     }
 
-    public Marca updateMarca(Marca to) {
+    public Marca update(Marca to){
         return repo.save(to);
     }
-
-    public void deleteMarca(Long id) {
+    public void delete(Long id){
         repo.deleteById(id);
     }
     public Marca searchById(Long id){
         return repo.findById(id).orElse(null);
     }
-    public List<ComboBoxOption> listaMarcaCombobox(){
-        List<ComboBoxOption> listar =new ArrayList<>();
-        for (Marca cate : repo.findAll()) {
-            listar.add(new ComboBoxOption(String.valueOf(cate.getIdMarca()),
-                    cate.getNombre()
-            ));
+
+    public List<ComboBoxOption> listarCombobox(){
+        List<ComboBoxOption> listar=new ArrayList<>();
+        ComboBoxOption cb;
+        for(Marca cate : repo.findAll()) {
+            cb=new ComboBoxOption();
+            cb.setKey(String.valueOf(cate.getIdMarca()));
+            cb.setValue(cate.getNombre());
+            listar.add(cb);
         }
         return listar;
     }

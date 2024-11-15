@@ -33,10 +33,9 @@ import java.util.Set;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
-import static pe.edu.upeu.sysalmacenfx.componente.Toast.showToast;
-
 @Component
 public class ProductoController {
+
     @FXML
     TextField txtNombreProducto, txtPUnit,
             txtPUnitOld, txtUtilidad, txtStock, txtStockOld,
@@ -54,7 +53,7 @@ public class ProductoController {
     @FXML
     private AnchorPane miContenedor;
     Stage stage;
-    // inspeccion
+
     @Autowired
     MarcaService ms;
     @Autowired
@@ -63,13 +62,13 @@ public class ProductoController {
     ProductoService ps;
     @Autowired
     UnidadMedidaService ums;
+
     private Validator validator;
     ObservableList<Producto> listarProducto;
     Producto formulario;
     Long idProductoCE=0L;
 
     public void initialize() {
-
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(2000), event -> {
             stage = (Stage) miContenedor.getScene().getWindow();
             if (stage != null) {
@@ -81,10 +80,8 @@ public class ProductoController {
         timeline.setCycleCount(1);
         timeline.play();
 
-
-
         cbxMarca.setTooltip(new Tooltip());
-        cbxMarca.getItems().addAll(ms.listaMarcaCombobox());
+        cbxMarca.getItems().addAll(ms.listarCombobox());
         cbxMarca.setOnAction(event -> {
             ComboBoxOption selectedProduct = cbxMarca.getSelectionModel().getSelectedItem();
             if (selectedProduct != null) {
@@ -94,9 +91,8 @@ public class ProductoController {
         });
         new ComboBoxAutoComplete<>(cbxMarca);
 
-
         cbxCategoria.setTooltip(new Tooltip());
-        cbxCategoria.getItems().addAll(cs.listaCategoriaCombobox());
+        cbxCategoria.getItems().addAll(cs.listarCombobox());
         cbxCategoria.setOnAction(event -> {
             ComboBoxOption selectedProduct = cbxCategoria.getSelectionModel().getSelectedItem();
             if (selectedProduct != null) {
@@ -106,9 +102,8 @@ public class ProductoController {
         });
         new ComboBoxAutoComplete<>(cbxCategoria);
 
-
         cbxUnidMedida.setTooltip(new Tooltip());
-        cbxUnidMedida.getItems().addAll(ums.listaUnidadMedidaCombobox());
+        cbxUnidMedida.getItems().addAll(ums.listarCombobox());
         cbxUnidMedida.setOnAction(event -> {
             ComboBoxOption selectedProduct = cbxUnidMedida.getSelectionModel().getSelectedItem();
             if (selectedProduct != null) {
@@ -121,7 +116,6 @@ public class ProductoController {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
 
-
         // Crear instancia de la clase genérica TableViewHelper
         TableViewHelper<Producto> tableViewHelper = new TableViewHelper<>();
         LinkedHashMap<String, ColumnInfo> columns = new LinkedHashMap<>();
@@ -130,36 +124,33 @@ public class ProductoController {
         columns.put("P. Unitario", new ColumnInfo("pu", 150.0)); // Columna visible "Columna 2" mapea al campo "campo2"
         columns.put("Utilidad", new ColumnInfo("utilidad", 100.0)); // Columna visible "Columna 2" mapea al campo "campo2"
         columns.put("Marca", new ColumnInfo("marca.nombre", 200.0)); // Columna visible "Columna 2" mapea al campo "campo2"
-        columns.put("Categoria", new ColumnInfo("categoria.nombre", 200.0)); // Columna visible "Columna 2" mapea al campo "campo2"
-        columns.put("Unid.Medida", new ColumnInfo("unidadMedida.nombreMedida", 140.0));
+        columns.put("Categoria", new ColumnInfo("categoria.nombre", 200.0));
+        columns.put("Unid. Medida", new ColumnInfo("unidadMedida.nombreMedida",150.0));
 
-        // Definir las acciones de actualizar y eliminar
+
         Consumer<Producto> updateAction = (Producto producto) -> {
             System.out.println("Actualizar: " + producto);
             editForm(producto);
         };
         Consumer<Producto> deleteAction = (Producto producto) -> {System.out.println("Actualizar: " + producto);
-            ps.deleteProducto(producto.getIdProducto()); //deletePerson(usuario);/
+            ps.delete(producto.getIdProducto()); /*deletePerson(usuario);*/
             double with=stage.getWidth()/1.5;
             double h=stage.getHeight()/2;
-            showToast(stage, "Se eliminó correctamente!!", 2000, with, h);
+            Toast.showToast(stage, "Se eliminó correctamente!!", 2000, with, h);
             listar();
         };
 
-
-        // Usar el helper para agregar las columnas en el orden correcto
         tableViewHelper.addColumnsInOrderWithSize(tableView, columns,updateAction, deleteAction );
-        // Agregar botones de eliminar y modificar
+
         tableView.setTableMenuButtonVisible(true);
         listar();
-
 
     }
 
     public void listar(){
         try {
             tableView.getItems().clear();
-            listarProducto = FXCollections.observableArrayList(ps.listProducto());
+            listarProducto = FXCollections.observableArrayList(ps.list());
             tableView.getItems().addAll(listarProducto);
             // Agregar un listener al campo de texto txtFiltroDato para filtrar los productos
             txtFiltroDato.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -203,9 +194,9 @@ public class ProductoController {
     }
 
     void validarCampos(List<ConstraintViolation<Producto>> violacionesOrdenadasPorPropiedad){
-        // Crear un LinkedHashMap para ordenar las violaciones
+// Crear un LinkedHashMap para ordenar las violaciones
         LinkedHashMap<String, String> erroresOrdenados = new LinkedHashMap<>();
-        // Mostrar el primer mensaje de error
+// Mostrar el primer mensaje de error
         for (ConstraintViolation<Producto> violacion : violacionesOrdenadasPorPropiedad) {
             String campo = violacion.getPropertyPath().toString();
             if(campo.equals("nombre")){
@@ -257,14 +248,14 @@ public class ProductoController {
         String idxC=cbxCategoria.getSelectionModel().getSelectedItem()==null?"0":cbxCategoria.getSelectionModel().getSelectedItem().getKey();
         formulario.setCategoria(cs.searchById(Long.parseLong(idxC)));
         String idxUM=cbxUnidMedida.getSelectionModel().getSelectedItem()==null?"0":cbxUnidMedida.getSelectionModel().getSelectedItem().getKey();
-        formulario.setUnidadMedida(ums.searchByIdUnidadMedida(Long.parseLong(idxUM)));
+        formulario.setUnidadMedida(ums.searchById(Long.parseLong(idxUM)));
         Set<ConstraintViolation<Producto>> violaciones = validator.validate(formulario);
-        // Si prefieres ordenarlo por el nombre de la propiedad que violó la restricción, podrías usar:
+// Si prefieres ordenarlo por el nombre de la propiedad que violó la restricción, podrías usar:
         List<ConstraintViolation<Producto>> violacionesOrdenadasPorPropiedad = violaciones.stream()
                 .sorted((v1, v2) -> v1.getPropertyPath().toString().compareTo(v2.getPropertyPath().toString()))
                 .collect(Collectors.toList());
         if (violacionesOrdenadasPorPropiedad.isEmpty()) {
-            // Los datos son válidos
+// Los datos son válidos
             lbnMsg.setText("Formulario válido");
             lbnMsg.setStyle("-fx-text-fill: green; -fx-font-size: 16px;");
             limpiarError();
@@ -272,12 +263,12 @@ public class ProductoController {
             double h=stage.getHeight()/2;
             if(idProductoCE!=0L && idProductoCE>0L){
                 formulario.setIdProducto(idProductoCE);
-                ps.updateProducto(formulario);
-                showToast(stage, "Se actualizó correctamente!!", 2000, with, h);
+                ps.update(formulario);
+                Toast.showToast(stage, "Se actualizó correctamente!!", 2000, with, h);
                 clearForm();
             }else{
-                ps.saveProducto(formulario);
-                showToast(stage, "Se guardo correctamente!!", 2000, with, h);
+                ps.save(formulario);
+                Toast.showToast(stage, "Se guardo correctamente!!", 2000, with, h);
                 clearForm();
             }
             listar();
@@ -288,15 +279,15 @@ public class ProductoController {
 
     private void filtrarProductos(String filtro) {
         if (filtro == null || filtro.isEmpty()) {
-            // Si el filtro está vacío, volver a mostrar la lista completa
+// Si el filtro está vacío, volver a mostrar la lista completa
             tableView.getItems().clear();
             tableView.getItems().addAll(listarProducto);
         } else {
-            // Aplicar el filtro
+// Aplicar el filtro
             String lowerCaseFilter = filtro.toLowerCase();
             List<Producto> productosFiltrados = listarProducto.stream()
                     .filter(producto -> {
-                        // Verificar si el filtro coincide con alguno de los campos
+// Verificar si el filtro coincide con alguno de los campos
                         if (producto.getNombre().toLowerCase().contains(lowerCaseFilter)) {
                             return true;
                         }
@@ -328,21 +319,21 @@ public class ProductoController {
         txtUtilidad.setText(producto.getUtilidad().toString());
         txtStock.setText(producto.getStock().toString());
         txtStockOld.setText(producto.getStockOld().toString());
-        // Seleccionar el ítem en cbxMarca según el ID de Marca
+// Seleccionar el ítem en cbxMarca según el ID de Marca
         cbxMarca.getSelectionModel().select(
                 cbxMarca.getItems().stream()
                         .filter(marca -> Long.parseLong(marca.getKey())==producto.getMarca().getIdMarca())
                         .findFirst()
                         .orElse(null)
         );
-        // Seleccionar el ítem en cbxCategoria según el ID de Categoria
+// Seleccionar el ítem en cbxCategoria según el ID de Categoria
         cbxCategoria.getSelectionModel().select(
                 cbxCategoria.getItems().stream()
                         .filter(categoria -> Long.parseLong(categoria.getKey())==producto.getCategoria().getIdCategoria())
                         .findFirst()
                         .orElse(null)
         );
-        // Seleccionar el ítem en cbxUnidMedida según el ID de Unidad de Medida
+// Seleccionar el ítem en cbxUnidMedida según el ID de Unidad de Medida
         cbxUnidMedida.getSelectionModel().select(
                 cbxUnidMedida.getItems().stream()
                         .filter(unidad -> Long.parseLong(unidad.getKey())==producto.getUnidadMedida().getIdUnidad())
@@ -352,12 +343,5 @@ public class ProductoController {
         idProductoCE=producto.getIdProducto();
         limpiarError();
     }
-
-
-
-
-
-
-
 
 }

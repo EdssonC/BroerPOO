@@ -8,8 +8,7 @@ import java.util.List;
 import java.util.Properties;
 
 @Service
-public class MenuMenuItemDao implements MenuMenuItenDaoI {
-
+public class MenuMenuItemDao implements MenuMenuItenDaoI{
 
     @Override
     public List<MenuMenuItenTO> listaAccesos(String perfil, Properties idioma) {
@@ -17,8 +16,8 @@ public class MenuMenuItemDao implements MenuMenuItenDaoI {
         lista.add(new MenuMenuItenTO(idioma.getProperty("menu.nombre.archivo"), "", "mifile"));
         lista.add(new MenuMenuItenTO(idioma.getProperty("menu.nombre.archivo"), "Salir", "misalir"));
         lista.add(new MenuMenuItenTO("Edit", "Cortar", "micut"));
-        lista.add(new MenuMenuItenTO("Edit", "Copiar", "micopy"));
-        lista.add(new MenuMenuItenTO("Edit", "Pegar", "mipaste"));
+        lista.add(new MenuMenuItenTO("Edit", "copiar", "micopy"));
+        lista.add(new MenuMenuItenTO("Edit", "pegar", "mipaste"));
         lista.add(new MenuMenuItenTO("Edit", idioma.getProperty("menuitem.nombre.postulante"), "miselectall"));
         lista.add(new MenuMenuItenTO("Producto", "Reg. Producto", "miregproduct"));
         lista.add(new MenuMenuItenTO("Producto", "Ver2", "miver2"));
@@ -51,4 +50,5 @@ public class MenuMenuItemDao implements MenuMenuItenDaoI {
         }
         return accesoReal;
     }
+
 }
