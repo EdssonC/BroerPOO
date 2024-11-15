@@ -135,7 +135,7 @@
                                 <Insets left="5.0" />
                             </GridPane.margin>
                         </Label>
-                        <TextField fx:id="cantidadPro" onKeyTyped="#calcularPT" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                        <TextField fx:id="cantidadPro" GridPane.columnIndex="4" GridPane.rowIndex="1">
                             <GridPane.margin>
                                 <Insets left="5.0" />
                             </GridPane.margin>
@@ -150,7 +150,7 @@
                                 <Insets left="5.0" />
                             </GridPane.margin>
                         </TextField>
-                        <Button fx:id="btnRegCarrito" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#registarPCarrito" prefWidth="57.0" text="Add" GridPane.columnIndex="7" GridPane.rowSpan="2">
+                        <Button fx:id="btnRegCarrito" maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefWidth="57.0" text="Add" GridPane.columnIndex="7" GridPane.rowSpan="2">
                             <GridPane.margin>
                                 <Insets left="5.0" />
                             </GridPane.margin></Button>
@@ -200,7 +200,7 @@
                                 <Insets left="5.0" />
                             </GridPane.margin>
                         </Label>
-                        <Button fx:id="btnRegVenta" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#registrarVenta" text="R. Venta" GridPane.columnIndex="4" GridPane.rowSpan="2" />
+                        <Button fx:id="btnRegVenta" maxHeight="1.7976931348623157E308" mnemonicParsing="false" text="R. Venta" GridPane.columnIndex="4" GridPane.rowSpan="2" />
                         <TextField fx:id="txtBaseImp" GridPane.rowIndex="1">
                             <GridPane.margin>
                                 <Insets left="5.0" />
