@@ -18,8 +18,6 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
-import static org.apache.commons.io.FileUtils.getFile;
-
 @Service
 public class VentaService {
     @Autowired
@@ -73,30 +71,16 @@ public class VentaService {
         HashMap<String, Object> param = new HashMap<>();
         // Obtener ruta de la imagen
         String imgen = getFile("logoupeu.png").getAbsolutePath();
+        String urljasper = getFile("detallev.jasper").getAbsolutePath();
         // Agregar parámetros
         param.put("idventa", idv);
         param.put("imagenurl", imgen);
+        param.put("urljasper", urljasper);
         // Cargar el diseño del informe
         JasperDesign jdesign = JRXmlLoader.load(getFile("comprobante.jrxml"));
         JasperReport jreport = JasperCompileManager.compileReport(jdesign);
         // Llenar el informe
         return JasperFillManager.fillReport(jreport, param, dataSource.getConnection());
-
     }
-
-    public JasperPrint runReport2() throws JRException, SQLException {
-        HashMap<String, Object> param = new HashMap<>();
-        // Obtener ruta de la imagen
-        String imgen = getFile("logoupeu.png").getAbsolutePath();
-        // Agregar parámetros
-        //param.put("imagenurl", imgen);
-        // Cargar el diseño del informe
-        JasperDesign jdesign = JRXmlLoader.load(getFile("prueba.jrxml"));
-        JasperReport jreport = JasperCompileManager.compileReport(jdesign);
-        // Llenar el informe
-        return JasperFillManager.fillReport(jreport, param, dataSource.getConnection());
-    }
-
-    
 
 }
